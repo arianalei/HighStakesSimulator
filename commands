@@ -1,0 +1,175 @@
+  // First quarter
+  rundis(-30,0,70,0.5);//改数字300后退   
+  turnaround(-90,30);//后部左转90   
+  wait(300,msec);   
+  rundis(-30,-90,650,0.5);//朝mobile 走   
+  mobile.set(true);   
+  wait(300,msec);   
+  Armrecovery();  
+  rundis(-30,-90,400,0.5);//朝前走一段   
+  intak(100);   
+  wait(300,msec);   
+  turnaround(-180,30);//前部左转90   
+  rundis(30,-180,970,0.5);//朝ring走拿到第一个ring  
+  wait(300,msec);   
+  turnaround(90,30);//前部左转90   
+  wait(300,msec);   
+  rundis(30,90,960,0.5);//朝ring走拿到第 er ring     
+  wait(500,msec);   
+  turnaround(1,30);//前部左转一定角度朝第3,4   
+  wait(300,msec);   
+  rundis(20,1,1200,0.5);//朝ring走拿到第 3,4   
+  wait(300,msec);   
+  turnaround(125,30);//face 5th ring   
+  wait(300,msec);   
+  rundis(20,145,450,0.5);//take the 5th ring   
+  wait(300,msec);   
+  turnaround(235,30);   
+  wait(300,msec);   
+  rundis(-30,235,480,0.5);   
+  mobile.set(false);//打开clutch   
+  intak(0);    
+  rundis(30,235,360,0.5);    
+  wait(500,msec);   
+
+  // Second quarter
+  turnaround(270,30);   
+  wait(1,sec);    
+  rundis(30,270,2100,0.5);    
+  wait(0.5,sec);    
+  turnaround(90,20);    
+  wait(1,sec);    
+  rundis(-20,90,650,0.5);    
+  mobile.set(true);//第二个mobile goal    
+  intak(100);    
+  rundis(-30,90,400,0.5);//朝前走一点准备转弯    
+  wait(1,sec);    
+  turnaround(180,20);    
+  wait(1,sec);    
+  rundis(30,180,970,0.5);    
+  wait(1,sec);    
+  turnaround(270,20);    
+  wait(1,sec);    
+  rundis(30,270,1060,0.5);    
+  wait(1,sec);    
+  turnaround(359,20);    
+  wait(1,sec);    
+  rundis(30,359,1400,0.5);    
+  wait(1,sec);    
+  turnaround(225,20);    
+  wait(1,sec);    
+  rundis(30,225,450,0.5);    
+  wait(300,msec);    
+  turnaround(145,30);   
+  wait(300,msec);   
+  rundis(-30,145,470,0.5);  
+  mobile.set(false);//打开clutch   
+  intak(0);    
+
+  // Middle wall goal
+  wait(300,msec);   
+  rundis(30,145,100,0.5);  
+  turnaround(180,30);
+  wait(300,msec);
+  intak(100);
+  task armr(arminset);   
+  rundis(30,180,2000,0.5);
+  intak(0);
+  wait(300,msec);
+  turnaround(-90,30);
+  wait(300,msec);
+  rundis(30,-90,100,0.5);
+  wait(300,msec);
+  task armaa(armalliance);   
+
+  Controller1.Screen.setCursor(3,1);   
+  Controller1.Screen.print( Brain.Timer.value());
+
+  // Third quarter
+  rundis(-30,145,470,0.5);  
+
+
+
+  // intak(100);
+  // wait(300,msec);
+  // intak(0);
+  // rundis(30,0,100,0.5);//改数字300后退
+  // wait(200,msec);
+  // turnaround(90,30);//后部左转90
+  // wait(300,msec);
+  // rundis(-30,0,660,0.5);//朝mobile 走
+  // mobile.set(true);
+  // wait(300,msec);
+  // turnaround(-90,30);
+  // rundis(-30,-90,400,0.5);//朝前走一段
+  // intak(100);
+  // wait(300,msec);
+  // turnaround(90,30);//前部左转90
+  // rundis(-30,-90,400,0.5);
+  // wait(1,sec);
+  // intak(0);
+
+//   gotopos(-600,600);
+//   wait(1,sec);
+//   gotopos(-600,1200);
+//   wait(1,sec);
+//   //gotopos(-1200,1200);
+//   gotopos(-1500,1200);
+//   /*gotopos(-1200,1500);//完成左上角落
+
+//   gotopos(-1200,-600);
+//   gotopos(-600,-600);
+//   gotopos(-600,-1200);
+//   gotopos(-1200,-1200);
+//   gotopos(-1500,-1200);
+//   gotopos(-1200,-1500);//完成左下角落
+  
+//   gotopos(0,-1500);//右边wall goal;
+//   //抬arm，并且停止intake
+  
+//   gotopos(600,-1200);//朝600，-1200走，去之前，抬arm到lady brown 停留位置
+
+//   gotopos(600,-600);//intake及时停止
+//   gotopos(1200,0);// empty mobile goal position
+//   intak(100);
+
+//   gotopos(600,600);//第一象限位置 右上角
+//   gotopos(600,1200);
+//   //gotopos(0,1500);// waall goal 前面
+//   //挂wall goal
+//   gotopos(1200,1200);
+//   gotopos(1500,1200);//完成右上角
+
+//   //到角落放完后，冲出来朝强角度走推mobile goal 去角落
+
+
+
+//   /*gotopos(1200,1200);
+//   int a2=GPS6.xPosition(mm);
+//   int b2=GPS6.heading();
+//   int c2=GPS6.yPosition(mm);
+//   Controller1.Screen.setCursor(3,1);
+//   Controller1.Screen.print("%d,%d,%d",a2,b2,c2);
+//   wait(10,seconds);
+//   gotopos(-1100,-1100);
+//   a2=GPS6.xPosition(mm);
+//   b2=GPS6.heading();
+//   c2=GPS6.yPosition(mm);
+//   Controller1.Screen.setCursor(3,1);
+//   Controller1.Screen.print("%d,%d,%d",a2,b2,c2);
+//    wait(10,seconds);
+  
+//   gotopos(1500,-1200);
+//   a2=GPS6.xPosition(mm);
+//   b2=GPS6.heading();
+//   c2=GPS6.yPosition(mm);
+//   Controller1.Screen.setCursor(3,1);
+//   Controller1.Screen.print("%d,%d,%d",a2,b2,c2);
+//   gotopos(-1200,1500);
+//   a2=GPS6.xPosition(mm);
+//   b2=GPS6.heading();
+//   c2=GPS6.yPosition(mm);
+//   Controller1.Screen.setCursor(3,1);
+//   Controller1.Screen.print("%d,%d,%d",a2,b2,c2);
+//   wait(10,seconds);*/
+}
