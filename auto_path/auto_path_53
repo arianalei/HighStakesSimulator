@@ -1,0 +1,106 @@
+task armt(armalliance);
+wait(800,msec);
+
+// First quadrant
+// 1. get the mobile goal
+rundis(-30,0,70,0.5);
+turnaround(-90,30);
+wait(100,msec);
+rundis(-30,-90,640,0.5);
+mobile.set(true);
+wait(200,msec);   
+Armrecovery();  
+wait(100,msec);
+
+// turn to get the first ring
+rundis(-30,-90,400,0.5);
+intak(100);   
+wait(200,msec);   
+turnaround(-180,30);
+rundis(30,-180,970,0.5);
+wait(200,msec);
+
+// turn to get the second ring close to the wall goal
+turnaround(-220,30);
+rundis(30,-220,850,0.5);
+rundis(30,-235,750,0.5);
+wait(200,msec);
+
+// turn sharply to get the row of three rings
+turnaround(-25,30);
+rundis(30,-25,600,0.5);
+wait(100,msec);
+turnaround(0,30);
+rundis(20,0,2000,0.5);
+wait(300,msec);
+
+// turn 45 degrees to get the fifth ring
+turnaround(135,30);
+rundis(30,135,750,0.5);
+wait(100,msec);
+
+// turn to place the mobile goal into the corner
+turnaround(200,30);   
+rundis(-30,200,550,0.5);   
+wait(100,msec);
+mobile.set(false);
+intak(0);    
+wait(100,msec);
+
+// turn to prepare to the second quadrant
+rundis(30,225,500,0.5);
+wait(100,msec);
+turnaround(270,30);   
+rundis(-30,270,350,0.5);
+rundis(30,270,2450,0.5);
+turnaround(0,30);
+rundis(30,0,400,0.5);
+rundis(-30,0,600,0.5);
+wait(100,msec);
+
+
+// Second quadrant
+// turn to get the second mobile goal
+turnaround(90,20);
+wait(100,msec);
+rundis(-20,90,700,0.5);
+mobile.set(true);
+intak(100);
+rundis(-30,90,400,0.5);
+wait(100,msec);
+
+// turn to get the first ring
+turnaround(180,20);    
+wait(100,msec);
+rundis(30,180,970,0.5);    
+wait(100,msec);
+
+// turn to get the second ring close to the wall goal
+turnaround(230,30);
+rundis(30,230,850,0.5);
+rundis(30,245,800,0.5);
+wait(100,msec);
+
+// turn sharply to get the row of three rings
+turnaround(65,30);
+rundis(30,65,450,0.5);
+wait(100,msec);
+turnaround(0,30);
+rundis(20,0,2000,0.5);
+wait(100,msec);
+
+// turn 45 degrees to get the fifth ring
+turnaround(225,30);
+rundis(30,225,800,0.5);
+wait(100,msec);
+
+// turn to place the mobile goal into the corner
+turnaround(160,30);   
+rundis(-30,160,500,0.5);   
+wait(100,msec);
+mobile.set(false);
+intak(0);    
+wait(100,msec);
+
+// turn to prepare to the third quadrant
+rundis(30,90,500,0.5);

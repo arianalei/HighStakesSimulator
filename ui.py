@@ -1,6 +1,8 @@
 import pygame
 import pygame_gui
 
+pygame.init()
+
 class UserInterface:
     def __init__(self, ui_manager, game):
         self.ui_manager = ui_manager
@@ -29,6 +31,12 @@ class UserInterface:
             manager=self.ui_manager
         )
 
+        self.load_button = pygame_gui.elements.UIButton(
+            relative_rect=pygame.Rect((920, 800), (260, 40)),
+            text="Load Commands",
+            manager=self.ui_manager
+        )   
+
     def get_commands(self):
         """Retrieve the text input from the editable text box."""
         return self.command_input.get_text().strip()
@@ -37,3 +45,16 @@ class UserInterface:
         """Set the text in the editable text box."""
         self.command_input.set_text(text)
         
+    def load_commands_from_file(self, file_path):
+        print(f"Loading commands from {file_path}")
+        try:
+            with open(file_path, 'r') as file:
+                commands = file.read()
+                self.command_input.set_text("")  # Clear existing input
+                self.command_input.set_text(commands)  # Load new content
+                
+                print(f"Commands loaded from {file_path}")
+        except FileNotFoundError:
+            print(f"Error: The file {file_path} was not found.")
+        except Exception as e:
+            print(f"Error loading file: {e}")

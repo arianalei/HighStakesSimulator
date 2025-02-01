@@ -159,14 +159,17 @@ class Game:
 
     def main_loop(self):
         """Main loop for the game."""
-        while True:
+        running = True  # Loop control variable
+        while running:
             time_delta = self.clock.tick(30) / 1000.0  # Delta time for physics at 30 FPS
+            
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
+                    running = False  # This will now correctly exit the loop
 
-                # Handle UI events
+                self.ui_manager.process_events(event)  # Handle UI and other events
+                
+                # Specific UI button events
                 if event.type == pygame.USEREVENT:
                     if event.user_type == pygame_gui.UI_BUTTON_PRESSED:
                         if event.ui_element == self.ui.reset_button:
@@ -176,12 +179,18 @@ class Game:
                             self.reset_timer()  # Reset and start the timer
                             command = self.ui.command_input.get_text()
                             self.parse_command(command)
-
-                self.ui_manager.process_events(event)
+                        elif event.ui_element == self.ui.load_button:
+                            self.ui.load_commands_from_file("./auto_path/auto_path_53")  # Load file
+                            # Reset robot and timer
+                            self.reset_robot()
+                            self.reset_timer()
 
             # Update physics and execute commands
             self.update_physics(time_delta)
 
+            # Clear screen or draw background
+            self.screen.fill((0, 0, 0))  # Clear screen with black before drawing
+            
             # Draw components
             self.field.draw(self.screen)
             self.ui_manager.update(time_delta)
@@ -193,7 +202,6 @@ class Game:
 
             # Update display
             pygame.display.flip()
-
 
 if __name__ == "__main__":
     game = Game()
