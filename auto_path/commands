@@ -6,6 +6,7 @@
   mobile.set(true);   
   wait(300,msec);   
   Armrecovery();  
+
   rundis(-30,-90,400,0.5);//朝前走一段   
   intak(100);   
   wait(300,msec);   

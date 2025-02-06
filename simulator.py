@@ -180,7 +180,7 @@ class Game:
                             command = self.ui.command_input.get_text()
                             self.parse_command(command)
                         elif event.ui_element == self.ui.load_button:
-                            self.ui.load_commands_from_file("./auto_path/auto_path_53")  # Load file
+                            self.ui.open_file_dialog()                            
                             # Reset robot and timer
                             self.reset_robot()
                             self.reset_timer()

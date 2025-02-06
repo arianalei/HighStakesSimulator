@@ -1,11 +1,14 @@
 import pygame
 import pygame_gui
+import tkinter as tk
+from tkinter import filedialog
 
 pygame.init()
 
 class UserInterface:
     def __init__(self, ui_manager, game):
         self.ui_manager = ui_manager
+        self.game = game
 
         # UI Elements
         self.command_label = pygame_gui.elements.UILabel(
@@ -32,10 +35,10 @@ class UserInterface:
         )
 
         self.load_button = pygame_gui.elements.UIButton(
-            relative_rect=pygame.Rect((920, 800), (260, 40)),
+            relative_rect=pygame.Rect((920, 800), (260, 40)),  # Adjust position as needed
             text="Load Commands",
             manager=self.ui_manager
-        )   
+        )
 
     def get_commands(self):
         """Retrieve the text input from the editable text box."""
@@ -46,15 +49,22 @@ class UserInterface:
         self.command_input.set_text(text)
         
     def load_commands_from_file(self, file_path):
-        print(f"Loading commands from {file_path}")
+        """Loads commands from the specified file into the command input."""
         try:
             with open(file_path, 'r') as file:
                 commands = file.read()
-                self.command_input.set_text("")  # Clear existing input
-                self.command_input.set_text(commands)  # Load new content
-                
+                self.command_input.set_text(commands)  # Set loaded commands into the command input
+                self.game.reset_robot()  # Reset robot as per previous requirements
+                self.game.reset_timer()  # Reset timer if necessary
                 print(f"Commands loaded from {file_path}")
-        except FileNotFoundError:
-            print(f"Error: The file {file_path} was not found.")
         except Exception as e:
             print(f"Error loading file: {e}")
+
+    def open_file_dialog(self):
+        """Opens a file dialog, allowing the user to choose a file to load commands from."""
+        root = tk.Tk()
+        root.withdraw()  # Hide the root window
+        file_path = filedialog.askopenfilename()  # Open the file dialog
+        if file_path:
+            self.load_commands_from_file(file_path)
+        root.destroy()
