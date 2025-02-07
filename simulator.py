@@ -173,8 +173,10 @@ class Game:
                 if event.type == pygame.USEREVENT:
                     if event.user_type == pygame_gui.UI_BUTTON_PRESSED:
                         if event.ui_element == self.ui.reset_button:
-                            self.reset_robot()
-                            self.reset_timer()
+                            print("Resetting the game!, current selection:", self.ui.selected_option)
+                            self.field.reset_background()  # Reset the field background
+                            self.reset_robot()  # Reset the robot
+                            self.reset_timer()  # Reset the timer
                         elif event.ui_element == self.ui.run_button:
                             self.reset_timer()  # Reset and start the timer
                             command = self.ui.command_input.get_text()
@@ -185,6 +187,12 @@ class Game:
                             self.reset_robot()
                             self.reset_timer()
 
+                    if event.user_type == pygame_gui.UI_DROP_DOWN_MENU_CHANGED:
+                        if event.ui_element == self.ui.options_menu:
+                            self.ui.selected_option = event.text  # Update the current selection
+                            self.field.set_type(self.ui.selected_option)  # Set the field type
+                            self.field.robot.set_type(self.ui.selected_option)  # Set the robot type
+                        
             # Update physics and execute commands
             self.update_physics(time_delta)
 

@@ -3,20 +3,29 @@ from robot import Robot
 
 class Field:
     def __init__(self, width, height):
+        self.type = "Skills Auton"  # Default type of robot
+
         self.width = width  # Screen width (900px)
         self.height = height  # Screen height (900px)
         self.real_width = 3600  # Real field width (3600mm)
         self.real_height = 3600  # Real field height (3600mm)
 
-        # Load and scale the background image
-        self.background_image = pygame.image.load('./images/field_cropped.png')
-        self.background_image = pygame.transform.scale(self.background_image, (width, height))
-
-        # Overlay for transparency effect
-        self.overlay = pygame.Surface((width, height), pygame.SRCALPHA)
-        self.overlay.fill((255, 255, 255, int(255 * 0.8)))
+        self.reset_background()  # Reset the background image
 
         self.robot = Robot()  # The robot object, stored in real-world coordinates
+
+    def reset_background(self):
+        # Load and scale the background image
+        if (self.type == "Skills Auton"):
+            self.background_image = pygame.image.load('./images/field_cropped.png')
+        else:
+            self.background_image = pygame.image.load('./images/field_alliance_cropped.png')
+        self.background_image = pygame.transform.scale(self.background_image, (self.width, self.height))
+
+        # Overlay for transparency effect
+        self.overlay = pygame.Surface((self.width, self.height), pygame.SRCALPHA)
+        self.overlay.fill((255, 255, 255, int(255 * 0.8)))
+
 
     def real_to_screen(self, real_x, real_y):
         """Convert real field coordinates (mm) to screen coordinates (px)."""
@@ -45,3 +54,10 @@ class Field:
     def run_robot_command(self, command):
         """Run a command for the robot."""
         self.robot.execute_command(command)
+
+    def load_image(self, image_path):
+        self.background_image = pygame.image.load(image_path)
+        self.background_image = pygame.transform.scale(self.background_image, (self.width, self.height))
+
+    def set_type(self, type):
+        self.type = type

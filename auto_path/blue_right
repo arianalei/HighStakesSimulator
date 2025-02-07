@@ -1,0 +1,37 @@
+  team = 2;
+  rundis(-40, 0, 1220 * 0.8, 0.5);
+  mobile.set(true);
+  turnaround(-143, 30);
+  // start color ring task
+  task colorf(colorfind);
+  //---------------------
+  rundis(40, -143, 950 * 0.8, 0.5); // 950
+  turnaround(-94, 30);
+  wait(100, msec);
+  rundis(40, -94, 1150 * 0.8, 0.5); //
+  wait(100, msec);
+  rundis(-40, -120, 900 * 0.8, 0.5);
+  turnaround(-77, 30);
+  wait(100, msec);
+  rundis(40, -78, 600 * 0.8, 0.5);
+  turnaround(-44, 30);
+  runtime(60, -44, 1000, 0.4);
+  colorf.suspend(); // 暂停task颜色识别
+  intak(-100);
+  runtime(60, -44, 800, 0.4);
+  intak(100);
+  wait(400, msec);
+  colorf.resume(); // 恢复task颜色识别
+  rundis(-30, -50, 720 * 0.8, 0.5);
+  turnaround(90, 30);
+  intakeup.set(true);
+  intak(0);
+  rundis(50, 91, 1960 * 0.8, 0.3);
+  intakeup.set(false);
+  wait(500, msec);
+  rundis(-50, 90, 500, 0.5);
+  turnaround(130, 30);
+  rundis(40, 130, 400, 0.5);
+  runtime(20, 130, 1000, 0.4);
+  colorf.suspend(); // 暂停task颜色识别
+  intak(0);

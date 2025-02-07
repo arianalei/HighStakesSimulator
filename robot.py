@@ -3,19 +3,12 @@ import math
 
 class Robot:
     def __init__(self):
-        self.real_x = 500  # Initial position (real coordinates in mm, centered)
-        self.real_y = 1800
-        self.head_axis = (-1, 0)  # Initial heading axis (facing left, x = -1, y = 0)
-        self.canonical_heading = (-1, 0)  # Canonical heading axis (facing right, x = 1, y = 0)
+        self.type = "Skills Auton"  # Default type of robot
+
+        self.reset()
+
         self.color = (0, 0, 255)
         self.size = 460  # Robot size in mm
-
-        self.velocity = 0
-        self.target_distance = 0
-        self.distance_traveled = 0
-        self.turn_speed = 0
-        self.target_angle = 0
-        self.turn_angle = 0
 
         self.friction_factor = 0.62  # Friction factor for velocity decay
         self.velocity_factor = 14  # Velocity increase factor to mimic real-world behavior
@@ -27,10 +20,7 @@ class Robot:
 
     def reset(self):
         """Reset the robot to its initial position and orientation."""
-        self.real_x = 500
-        self.real_y = 1800
-        self.head_axis = (-1, 0)  # Reset to initial heading (facing left)
-        self.canonical_heading = (-1, 0)  # Canonical heading axis (facing right, x = 1, y = 0)
+        self.reset_position()
 
         self.velocity = 0
         self.target_distance = 0
@@ -39,6 +29,21 @@ class Robot:
         self.target_angle = 0
         self.turn_angle = 0
         print("Robot reset to initial position and orientation.")
+
+    def reset_position(self):
+        # Define a lookup dictionary with type as key and (real_x, real_y) as value
+        position_lookup = {
+            "Skills Auton": (500, 1800, (-1, 0), (-1, 0)),
+            "Alliance Red Right": (500, 2650, (1, 0), (1, 0)),
+            "Alliance Red Left": (500, 1400, (1, 0), (1, 0)),
+            "Alliance Blue Right": (1800, 2650, (-1, 0), (-1, 0)),
+            "Alliance Blue Left": (1800, 1400, (-1, 0), (-1, 0))
+        }
+        # Get the position from the lookup dictionary or use default values
+        self.real_x, self.real_y, self.head_axis, self.cannonical_heading = position_lookup.get(self.type, (500, 1800, (-1, 0), (-1, 0)))
+
+    def set_type(self, type):
+        self.type = type
 
     def start_run(self, velocity, heading_degrees, distance):
         """Start moving in a straight line."""
@@ -116,8 +121,9 @@ class Robot:
         magnitude = math.sqrt(self.head_axis[0]**2 + self.head_axis[1]**2)
         self.head_axis = (self.head_axis[0] / magnitude, self.head_axis[1] / magnitude)
 
-        print(f"Head axis after turning: {self.head_axis}")
+        print(f"Updated head axis during turning: {self.head_axis}")
         return False
+
 
     def draw(self, screen, real_to_screen):
         """Draw the robot on the screen with an image overlay and an isosceles triangle for the front."""

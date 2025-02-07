@@ -1,0 +1,46 @@
+  // goal rush version red right
+  rundis(40, 0, 1600, 0.5);
+  frontarm.set(true);
+  wait(300, msec);
+  turnaround(80, 40);
+  wait(0.5, sec);
+  frontarm.set(false);
+  turnaround(45, 40);
+  wait(300, msec);
+  rundis(-40, 45, 600, 0.5);
+  rundis(-10, 45, 300, 0.5);
+  mobile.set(true);
+  wait(300, msec);
+  intak(100);
+  wait(500, msec);
+  turnaround(75, 40);
+  wait(300, msec);
+  rundis(40, 75, 900, 0.5);
+  wait(600, msec);
+  intak(0);
+  rundis(-40, 80, 200, 0.5);
+  mobile.set(false);
+  wait(300, msec);
+  turnaround(205, 40);
+  wait(300, msec);
+  rundis(-40, 205, 400, 0.5);
+  rundis(-10, 205, 10, 0.5);
+  mobile.set(true);
+  intak(100);
+  rundis(40, 205, 1900, 0.5);
+  wait(300, msec);
+  turnaround(270, 40);
+  wait(300, msec);
+  intakeup.set(true);
+  rundis(40, 270, 900, 0.5);
+  rundis(10, 270, 100, 0.5);
+  wait(300, msec);
+  turnaround(60, 0);
+  rundis(60, 0, 200, 0.5);
+  Arm.setVelocity(100, pct);
+  Arm.spin(forward);
+  while (Arm.isSpinning()) {
+      if (Arm.velocity(percent) < 5) {
+          Arm.stop();
+      }
+  }

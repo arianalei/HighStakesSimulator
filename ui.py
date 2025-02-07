@@ -23,13 +23,23 @@ class UserInterface:
             manager=self.ui_manager
         )
 
+        self.options_list = ["Skills Auton", "Alliance Red Right", "Alliance Red Left", "Alliance Blue Right", "Alliance Blue Left"]
+        self.selected_option = "Skills Auton"  # Default selection
+
+        self.options_menu = pygame_gui.elements.UIDropDownMenu(
+            options_list=self.options_list,
+            starting_option=self.selected_option,
+            relative_rect=pygame.Rect((920, 370), (260, 30)),
+            manager=self.ui_manager
+        )
+
         self.reset_button = pygame_gui.elements.UIButton(
-            relative_rect=pygame.Rect((920, 370), (120, 40)),
+            relative_rect=pygame.Rect((920, 480), (120, 40)),
             text="Reset",
             manager=self.ui_manager
         )
         self.run_button = pygame_gui.elements.UIButton(
-            relative_rect=pygame.Rect((1060, 370), (120, 40)),
+            relative_rect=pygame.Rect((1060, 480), (120, 40)),
             text="Run",
             manager=self.ui_manager
         )
